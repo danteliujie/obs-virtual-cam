@@ -244,6 +244,10 @@ bool CVCamStream::ListSupportFormat()
 	format_list.push_back(struct format(1280, 720, 333333));
 	format_list.push_back(struct format(960, 540, 333333));
 	format_list.push_back(struct format(640, 360, 333333));
+	format_list.push_back(struct format(1080, 1920, 333333));
+	format_list.push_back(struct format(720, 1280, 333333));
+	format_list.push_back(struct format(540, 960, 333333));
+	format_list.push_back(struct format(360, 640,  333333));
 
 	return true;
 }
@@ -329,6 +333,10 @@ bool CVCamStream::ValidateResolution(long width,long height)
 	else if (width * 9 == height * 16)
 		return true;
 	else if (width * 3 == height * 4)
+		return true;
+	else if (width * 16 == height * 9)
+		return true;
+	else if (width * 4 == height * 3)
 		return true;
 	else if (use_obs_format_init && width == obs_width && height == obs_height)
 		return true;
