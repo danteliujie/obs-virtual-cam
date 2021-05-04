@@ -96,19 +96,21 @@ Section "obs-virtualcam" Section1
 	; Set Section properties
 	SetOverwrite on
 	; Set Section Files and Shortcuts
+	; copy 32bit files to obs-virtualoutput folder
 	SetOutPath "$INSTDIR\data\obs-plugins\obs-virtualoutput\"
 	File "..\build-package\bin\32bit\obs-virtualsource.dll"
-	File "..\build-package\bin\32bit\obs-virtualsource.pdb"
+	;File "..\build-package\bin\32bit\obs-virtualsource.pdb"
 	File "..\build-package\bin\32bit\avutil-56.dll"
 	File "..\build-package\bin\32bit\swscale-5.dll"
 	SetOutPath "$INSTDIR\data\obs-plugins\obs-virtualoutput\locale\"
 	File /r "..\build-package\data\obs-plugins\obs-virtualoutput\locale\"
+	; copy 64bit files to other folder
 	SetOutPath "$INSTDIR\obs-plugins\64bit\"
 	File "..\build-package\obs-plugins\64bit\obs-virtualoutput.dll"
-	File "..\build-package\obs-plugins\64bit\obs-virtualoutput.pdb"
+	;File "..\build-package\obs-plugins\64bit\obs-virtualoutput.pdb"
 	SetOutPath "$INSTDIR\bin\64bit\"
 	File "..\build-package\bin\64bit\obs-virtualsource.dll"
-	File "..\build-package\bin\64bit\obs-virtualsource.pdb"
+	;File "..\build-package\bin\64bit\obs-virtualsource.pdb"
 	
 SectionEnd
 
@@ -118,7 +120,9 @@ Section -FinishSection
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "DisplayName" "${APPNAME}"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}" "UninstallString" "$INSTDIR\uninstall_obs-virtualcam.exe"
 	WriteUninstaller "$INSTDIR\uninstall_obs-virtualcam.exe"
+	; register 32bit files
 	Exec '$WinDir\Sysnative\regsvr32.exe /s /n /i:$Devices $\"$INSTDIR\data\obs-plugins\obs-virtualoutput\obs-virtualsource.dll$\"'
+	; register 64bit files
 	Exec '$SYSDIR\regsvr32.exe /s /n /i:$Devices $\"$INSTDIR\bin\64bit\obs-virtualsource.dll$\"'
 	
 SectionEnd

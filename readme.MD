@@ -44,8 +44,20 @@ Set following Cmake variables:
 - **DepsPath** (path): FFmpeg folder in OBS dependencies package
 - **LIBOBS_INCLUDE_DIR** (path) : Libobs  include folder
 - **LIBOBS_LIB** (filepath) : obs.lib path
+example: C:/work/obs/obs-studio/build/libobs/Release/obs.lib
 - **OBS_FRONTEND_LIB** (filepath): obs-frontend-api.lib path
-- **PTHREAD_LIB** (filepath): w32-pthread.lib path
+example: C:/work/obs/obs-studio/build/UI/obs-frontend-api/Release/obs-frontend-api.lib
+- **PTHREAD_LIB** (filepath): w32-pthreads.lib path
+exmpale: C:/work/obs/obs-studio/build/deps/w32-pthreads/Release/w32-pthreads.lib
+
+# Dante's current build action: 
+1. build win32 and win64 copies for Obs-studio separately
+2. build win32 and win64 copies for Obs-virtual-camera separately
+3. only build release version for Obs-virtual-camera
+4. use a script to make build-package folder and build installer exe
+5. not install pdb files
+
+Thanks for any comments to improve this build process.My mail: danteliujie@qq.com
 
 # Donate
 If you like my work on this plugin , you can donate via [Paypal.me](https://www.paypal.me/obsvirtualcam)
