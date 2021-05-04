@@ -51,7 +51,15 @@ Page custom VirtualDeviceSelection VirtualDeviceSelectionPageLeave
 
 ; Set languages (first is default language)
 !insertmacro MUI_LANGUAGE "English"
+!insertmacro MUI_LANGUAGE "SimpChinese"
 !insertmacro MUI_RESERVEFILE_LANGDLL
+
+LangString DeviceSelectTitle1 ${LANG_ENGLISH} "Device Selection"
+LangString DeviceSelectTitle1 ${LANG_SimpChinese} "摄像头数量选择"
+LangString DeviceSelectTitle2 ${LANG_ENGLISH} "Virtual devices to install"
+LangString DeviceSelectTitle2 ${LANG_SimpChinese} "要安装几个虚拟摄像头"
+LangString DeviceSelectInfo ${LANG_ENGLISH} "Select the number of virtual cameras to register. Typically, you will not need more than one."
+LangString DeviceSelectInfo ${LANG_SimpChinese} "请选择要安装的摄像头的数量. 通常选择一个摄像头就好了."
 
 Var Dialog
 Var Label
@@ -60,8 +68,7 @@ var Devices
 
 Function VirtualDeviceSelection
 
-	!insertmacro MUI_HEADER_TEXT "Device Selection" "Virtual devices to install"
-
+	!insertmacro MUI_HEADER_TEXT $(DeviceSelectTitle1) $(DeviceSelectTitle2)
 	nsDialogs::Create 1018
 	Pop $Dialog
 
@@ -69,7 +76,7 @@ Function VirtualDeviceSelection
 		Abort
 	${EndIf}
 
-	${NSD_CreateLabel} 0 0 100% 12u "Select the number of virtual cameras to register. Typically, you will not need more than one."
+	${NSD_CreateLabel} 0 0 100% 23u $(DeviceSelectInfo)
 	Pop $Label
 
 	${NSD_CreateDropList} 15u 23u 40u 80u ""
